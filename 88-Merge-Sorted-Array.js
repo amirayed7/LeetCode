@@ -6,30 +6,28 @@
  * @return {void} Do not return anything, modify nums1 in-place instead.
  */
 var merge = function(nums1, m, nums2, n) {
-    let last = m + n - 1
-    m = m - 1
-    n = n - 1
+    let p1 = m - 1
+    let p2 = n - 1
+    let p3 = m + n - 1
 
-    while (m >= 0 && n >= 0){
-        if (nums1[m] > nums2[n]){
-            nums1[last] = nums1[m]
-            m--
+    while(p1 > -1 && p2 > -1){
+        if (nums2[p2] >= nums1[p1]){
+            nums1[p3] = nums2[p2]
+            p3--
+            p2--
         }
         else{
-            nums1[last] = nums2[n]
-            n--    
+            nums1[p3] = nums1[p1]
+            p3--
+            p1--
         }
-        last--
     }
 
-    while (n >= 0){
-        nums1[last] = nums2[n]
-        n-- 
-        last-- 
+    while (p2 >= 0){
+        nums1[p3] = nums2[p2]
+        p3--
+        p2--
     }
 
     return nums1
 };
-
-
-// 
